@@ -61,7 +61,7 @@ def main():
         restore_best_weights=True,
     )
     callbacks_list = [checkpoint, early_stopping]
-    optimizer = "tf.keras.optimizers." + valohai.parameters('learning_rate').value(learning_rate=valohai.parameters('learning_rate').value)
+    optimizer = "tf.keras.optimizers." + valohai.parameters('optimizer').value(learning_rate=valohai.parameters('learning_rate').value)
     loss_fn = 'mean_absolute_error'
     model.compile(optimizer=optimizer, loss=loss_fn, metrics=['accuracy', 'mae'])
     
