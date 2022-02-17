@@ -13,6 +13,9 @@
       - name: learning_rate
         default: 0.001
         type: float
+      - name: optimizer
+        default: Adam
+        type: string
     inputs:
       - name: dataset
         default: https://valohaidemo.blob.core.windows.net/mnist/preprocessed_mnist.npz
