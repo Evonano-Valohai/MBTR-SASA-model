@@ -35,8 +35,7 @@ def main():
             'dataset_test_sasa': 'https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/sasas_test.zip?se=2022-02-18T07%3A55%3A55Z&sp=rt&sv=2020-10-02&sr=b&sig=z27exhQmt%2BW6dIon40dvXMCbqlTTduINy88rUUsb24g%3D'
         }
     )
-    
-    
+     
     input_path_train_MBTR = valohai.inputs('dataset_train').path()
     input_path_train_SASA = valohai.inputs('dataset_train_SASA').path()
     input_path_test_MBTR = valohai.inputs('dataset_test').path()
@@ -48,10 +47,10 @@ def main():
 
     NN_model = tensorflow.keras.models.Sequential()
     shape = 168
-    NN_model.add(tensorflow.keras.layers.Dense(shape, kernel_initializer='normal',input_dim = shape, activation='relu'))
-    NN_model.add(tensorflow.keras.layers.Dense(256, kernel_initializer='normal',activation='relu'))
-    NN_model.add(tensorflow.keras.layers.Dense(256, kernel_initializer='normal',activation='relu'))
-    NN_model.add(tensorflow.keras.layers.Dense(256, kernel_initializer='normal',activation='relu'))
+    NN_model.add(tensorflow.keras.layers.Dense(shape, kernel_initializer='normal', input_dim = shape, activation='relu'))
+    NN_model.add(tensorflow.keras.layers.Dense(256, kernel_initializer='normal', activation='relu'))
+    NN_model.add(tensorflow.keras.layers.Dense(256, kernel_initializer='normal', activation='relu'))
+    NN_model.add(tensorflow.keras.layers.Dense(256, kernel_initializer='normal', activation='relu'))
     NN_model.add(tensorflow.keras.layers.Dense(1, kernel_initializer='normal'))
 
     checkpoint_name = 'best_model.hdf5'
