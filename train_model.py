@@ -33,6 +33,14 @@ def main():
             'learning_rate': 0.001,
             'epochs': 500,
         },
+        default_inputs={
+            'dataset_train': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/mbtr_train'
+            'dataset_train_sasa': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/sasa_train'
+            'dataset_test': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/mbtr_test'
+            'dataset_test_sasa': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/sasas_test'
+        }
+ 
+
     )
     
     input_path_train_MBTR = valohai.inputs('dataset_train').path()
