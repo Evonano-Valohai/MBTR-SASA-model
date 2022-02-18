@@ -48,10 +48,10 @@ def main():
     )
     
     
-    input_path_train_MBTR = valohai.inputs('dataset_train').paths()
-    input_path_train_SASA = valohai.inputs('dataset_train_SASA').paths()
-    input_path_test_MBTR = valohai.inputs('dataset_test').paths()
-    input_path_test_SASA = valohai.inputs('dataset_test_SASA').paths()
+    input_path_train_MBTR = valohai.inputs('dataset_train').paths("*.csv")
+    input_path_train_SASA = valohai.inputs('dataset_train_SASA').paths("*.csv")
+    input_path_test_MBTR = valohai.inputs('dataset_test').paths("*.csv")
+    input_path_test_SASA = valohai.inputs('dataset_test_SASA').paths("*.csv")
     
     x_train, y_train =  mbtr_ds_generator(input_path_train_MBTR, input_path_train_SASA)
     x_test, y_test = mbtr_ds_generator(input_path_test_MBTR, input_path_test_SASA)
