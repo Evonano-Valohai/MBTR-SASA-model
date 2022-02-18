@@ -4,10 +4,8 @@ import tensorflow as tf
 import valohai
 import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM, BatchNormalization
-from tensorflow.keras.utils import plot_model
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.callbacks import ModelCheckpoint
 import os
