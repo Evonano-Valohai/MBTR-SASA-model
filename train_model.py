@@ -20,7 +20,7 @@ def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
       for sasa_file in sorted(os.listdir(directory_SASA)):
         if re.sub("_sasa", "", sasa_file) == re.sub("mbtr_data_whole_", "", mbtr_file):
             x_mbtr = pd.read_csv(directory_MBTR + "/" + str(mbtr_file), header= None)
-            x = np.concatenate((test_x, np.array(x_mbtr.values.tolist())), axis = 0)
+            x = np.concatenate((x, np.array(x_mbtr.values.tolist())), axis = 0)
             sasa = pd.read_csv(directory_SASA + "/" + str(sasa_file), delimiter= ";")
             y = np.concatenate((y, np.array(sasa["TOTAL"])), axis = 0)
     return x, y
@@ -33,10 +33,10 @@ def main():
             'learning_rate': 0.001,
             'epochs': 500,
         },
-        default_inputs={
-            'dataset_train': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/mbtr_train'
-            'dataset_train_sasa': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/sasa_train'
-            'dataset_test': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/mbtr_test'
+        default_inputs= {
+            'dataset_train': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/mbtr_train',
+            'dataset_train_sasa': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/sasa_train',
+            'dataset_test': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/mbtr_test',
             'dataset_test_sasa': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/sasas_test'
         }
  
