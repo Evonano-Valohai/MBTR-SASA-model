@@ -16,10 +16,10 @@ def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
     print('DEBUG 1')
     print(directory_MBTR[0])
     print(type(directory_MBTR[0]))
-    for sasa_file in directory_SASA:
+    for sasa_file in list(directory_SASA):
         print("DEBUG SASA")
         print(sasa_file)
-        for mbtr_file in directory_MBTR:
+        for mbtr_file in list(directory_MBTR):
             print("DEBUG MBTR")
             print(mbtr_file)
             if re.sub("_sasa", "", sasa_file) == re.sub("mbtr_data_whole_", "", mbtr_file):
