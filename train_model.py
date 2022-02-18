@@ -1,6 +1,6 @@
 import uuid
 import numpy as np
-import tensorflow as tf
+# import tensorflow as tf
 import valohai
 import pandas as pd
 import re
@@ -14,12 +14,13 @@ def log_metadata(epoch, logs):
         
 def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
     print('DEBUG 1')
-    print(directory_MBTR)
     x = 0
     y = 0
     for sasa_file in directory_SASA:
+        print("DEBUG SASA")
         print(sasa_file)
         for mbtr_file in directory_MBTR:
+            print("DEBUG MBTR")
             print(mbtr_file)
             if re.sub("_sasa", "", sasa_file) == re.sub("mbtr_data_whole_", "", mbtr_file):
                 x = pd.read_csv(mbtr_file, header= None)
@@ -55,17 +56,17 @@ def main():
     x_train, y_train =  mbtr_ds_generator(input_path_train_MBTR, input_path_train_SASA)
     x_test, y_test = mbtr_ds_generator(input_path_test_MBTR, input_path_test_SASA)
 
-    NN_model = tf.keras.models.Sequential()
+    NN_model = tensorflow.keras.models.Sequential()
     shape = 168
-    NN_model.add(tf.keras.layers.Dense(shape, kernel_initializer='normal',input_dim = shape, activation='relu'))
-    NN_model.add(tf.keras.layers.Dense(256, kernel_initializer='normal',activation='relu'))
-    NN_model.add(tf.keras.layers.Dense(256, kernel_initializer='normal',activation='relu'))
-    NN_model.add(tf.keras.layers.Dense(256, kernel_initializer='normal',activation='relu'))
-    NN_model.add(tf.keras.layers.Dense(1, kernel_initializer='normal'))
+    NN_model.add(tensorflow.keras.layers.Dense(shape, kernel_initializer='normal',input_dim = shape, activation='relu'))
+    NN_model.add(tensorflow.keras.layers.Dense(256, kernel_initializer='normal',activation='relu'))
+    NN_model.add(tensorflow.keras.layers.Dense(256, kernel_initializer='normal',activation='relu'))
+    NN_model.add(tensorflow.keras.layers.Dense(256, kernel_initializer='normal',activation='relu'))
+    NN_model.add(tensorflow.keras.layers.Dense(1, kernel_initializer='normal'))
 
     checkpoint_name = 'best_model.hdf5'
-    checkpoint = tf.keras.callbacks.ModelCheckpoint(checkpoint_name, monitor='val_loss', verbose = 1, save_best_only = True, mode ='auto')
-    early_stopping = tf.keras.callbacks.EarlyStopping(
+    checkpoint = tensorflow.keras.callbacks.ModelCheckpoint(checkpoint_name, monitor='val_loss', verbose = 1, save_best_only = True, mode ='auto')
+    early_stopping = tensorflow.keras.callbacks.EarlyStopping(
         monitor="val_loss",
         min_delta=0,
         patience=50,
@@ -75,7 +76,7 @@ def main():
         restore_best_weights=True,
     )
     callbacks_list = [checkpoint, early_stopping]
-    optimizer = tf.keras.optimizers.Adam(learning_rate=valohai.parameters('learning_rate').value)
+    optimizer = tensorflow.keras.optimizers.Adam(learning_rate=valohai.parameters('learning_rate').value)
     loss_fn = 'mean_absolute_error'
     NN_model.compile(optimizer=optimizer, loss=loss_fn, metrics=['accuracy', 'mae'])
     
@@ -83,7 +84,7 @@ def main():
     # This enables Valohai to version your metadata
     # and for you to use it to compare experiments
 
-    callback = tf.keras.callbacks.LambdaCallback(on_epoch_end=log_metadata)
+    callback = tensorflow.keras.callbacks.LambdaCallback(on_epoch_end=log_metadata)
     NN_model.fit(x_train, y_train, epochs=valohai.parameters('epochs').value, callbacks=[callbacks_list, callback])
     wights_file = checkpoint_name 
     NN_model.load_weights(wights_file)
