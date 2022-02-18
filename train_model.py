@@ -14,9 +14,9 @@ def log_metadata(epoch, logs):
         
 def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
     print('DEBUG 1')
-    # x = 0
-    # y = 0
-    for sasa_file in directory_SASA:
+    print(directory_MBTR[0])
+    print(type(directory_MBTR[0]))
+    for sasa_file in d))irectory_SASA:
         print("DEBUG SASA")
         print(sasa_file)
         for mbtr_file in directory_MBTR:
@@ -31,10 +31,7 @@ def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
                 y = np.concatenate((y, np.array(y["TOTAL"])), axis = 0)
     return x, y
 
-def read_sasa(sasa):
-    for i in sasa:
-        print(i)
-        print()
+
 
 def main():
     valohai.prepare(
