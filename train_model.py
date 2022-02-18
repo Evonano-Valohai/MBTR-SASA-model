@@ -17,18 +17,17 @@ def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
     print(directory_MBTR)
     x = 0
     y = 0
-    for mbtr_file in directory_MBTR:
-      print(mbtr_file)
-      for sasa_file in directory_SASA:
+    for sasa_file in directory_SASA:
         print(sasa_file)
-        if re.sub("_sasa", "", sasa_file) == re.sub("mbtr_data_whole_", "", mbtr_file):
-            print("DEBUG 3")
-            x = pd.read_csv(mbtr_file, header= None)
-            print(x.shape)
-            x = np.concatenate((x, np.array(x.values.tolist())), axis = 0)
-            y = pd.read_csv(sasa_file, delimiter= ";")
-            print(y.shape)
-            y = np.concatenate((y, np.array(y["TOTAL"])), axis = 0)
+        for mbtr_file in directory_MBTR:
+            print(mbtr_file)
+            if re.sub("_sasa", "", sasa_file) == re.sub("mbtr_data_whole_", "", mbtr_file):
+                x = pd.read_csv(mbtr_file, header= None)
+                print(x.shape)
+                x = np.concatenate((x, np.array(x.values.tolist())), axis = 0)
+                y = pd.read_csv(sasa_file, delimiter= ";")
+                print(y.shape)
+                y = np.concatenate((y, np.array(y["TOTAL"])), axis = 0)
     return x, y
 
 def main():
