@@ -31,10 +31,10 @@ def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
                 y = np.concatenate((y, np.array(y["TOTAL"])), axis = 0)
     return x, y
 
-    def read(sasa):
-        for i in sasa:
-            print(i)
-            print()
+def read(sasa):
+    for i in sasa:
+        print(i)
+        print()
 
 def main():
     valohai.prepare(
