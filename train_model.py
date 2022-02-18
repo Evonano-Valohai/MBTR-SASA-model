@@ -43,8 +43,15 @@ def main():
 
     )
     
-    input_path_train_MBTR = valohai.inputs('dataset_train').path()
+    print("DEBUG")
+    input_path_train_MBTR = valohai.inputs('dataset_train').paths()
+    print(input_path_train_MBTR)
+    print(type(input_path_train_MBTR))
+    print()
     input_path_train_SASA = valohai.inputs('dataset_train_SASA').path()
+    print(input_path_train_SASA)
+    print(type(input_path_train_SASA))
+    print()
     input_path_test_MBTR = valohai.inputs('dataset_test').path()
     input_path_test_SASA = valohai.inputs('dataset_test_SASA').path()
     
