@@ -16,7 +16,7 @@ def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
     print('DEBUG 1')
     print(directory_MBTR[0])
     print(type(directory_MBTR[0]))
-    for sasa_file in d))irectory_SASA:
+    for sasa_file in directory_SASA:
         print("DEBUG SASA")
         print(sasa_file)
         for mbtr_file in directory_MBTR:
