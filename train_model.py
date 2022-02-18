@@ -1,11 +1,8 @@
 import uuid
 import numpy as np
-import tensorflow as tf
+# import tensorflow as tf
 import valohai
-import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn.model_selection import train_test_split
-import os
 import re
 
 def log_metadata(epoch, logs):
@@ -17,16 +14,19 @@ def log_metadata(epoch, logs):
         
 def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
     print('DEBUG')
-    print(directory_MBTR)
-    print(directory_SASA)
     x = 0
     y = 0
     for mbtr_file in directory_MBTR:
       for sasa_file in directory_SASA:
+        print(mbtr_file)
+        print(sasa_file)
         if re.sub("_sasa", "", sasa_file) == re.sub("mbtr_data_whole_", "", mbtr_file):
+            print("DEBUG")
             x = pd.read_csv(mbtr_file, header= None)
+            print(x.shape)
             x = np.concatenate((x, np.array(x.values.tolist())), axis = 0)
             y = pd.read_csv(sasa_file, delimiter= ";")
+            print(y.shape)
             y = np.concatenate((y, np.array(y["TOTAL"])), axis = 0)
     return x, y
 
