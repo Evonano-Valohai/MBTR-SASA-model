@@ -21,5 +21,5 @@
         default: https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/sasa_train.zip?se=2022-02-18T07%3A57%3A54Z&sp=rt&sv=2020-10-02&sr=b&sig=B8%2F0f4m7PzaBbq8nqEK7WW%2Bfa6Xi0Z7vp57vWQ%2BNiO8%3D
       - name: dataset_test
         default: https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/mbtr_test.zip?se=2022-02-18T07%3A58%3A36Z&sp=rt&sv=2020-10-02&sr=b&sig=5gSwhvSpgOU46g23%2BNSA20OFPajhfvqLsydEDYWxHLg%3D
-      - name: dataset_train
+      - name: dataset_test_sasa
         default:  https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/sasas_test.zip?se=2022-02-18T07%3A55%3A55Z&sp=rt&sv=2020-10-02&sr=b&sig=z27exhQmt%2BW6dIon40dvXMCbqlTTduINy88rUUsb24g%3D
