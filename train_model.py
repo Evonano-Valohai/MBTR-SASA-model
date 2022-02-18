@@ -1,6 +1,6 @@
 import uuid
 import numpy as np
-# import tensorflow as tf
+import tensorflow
 import valohai
 import pandas as pd
 import re
