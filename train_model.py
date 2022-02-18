@@ -46,7 +46,8 @@ def main():
     print("DEBUG")
     input_path_train_MBTR = valohai.inputs('dataset_train').paths()
     print(input_path_train_MBTR)
-    print(type(input_path_train_MBTR))
+    for path in input_path_train_MBTR:
+        print(path)
     print()
     input_path_train_SASA = valohai.inputs('dataset_train_SASA').path()
     print(input_path_train_SASA)
