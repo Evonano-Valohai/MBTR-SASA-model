@@ -6,6 +6,7 @@
       - pip install valohai-utils
       - pip install -r requirements.txt
       - python ./train_model.py {parameters}
+      - /usr/bin/python3 -m pip install --upgrade pip
     parameters:
       - name: epochs
         default: 5
@@ -15,10 +16,10 @@
         type: float
     inputs:
       - name: dataset_train
-        default: https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/mbtr_train.zip?se=2022-02-18T07%3A58%3A16Z&sp=rt&sv=2020-10-02&sr=b&sig=5xk%2FYuRuktiNSxtL90QpezbuQx1Au5JGiEAQXQMEprQ%3D
+        default: https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/mbtr_train.zip?se=2022-02-18T08%3A27%3A59Z&sp=rt&sv=2020-10-02&sr=b&sig=E72IzIT%2FWrY%2BQN7vm%2FVO%2BtY49zp15iNqnBkjpz5A21Q%3D
       - name: dataset_train_sasa
-        default: https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/sasa_train.zip?se=2022-02-18T07%3A57%3A54Z&sp=rt&sv=2020-10-02&sr=b&sig=B8%2F0f4m7PzaBbq8nqEK7WW%2Bfa6Xi0Z7vp57vWQ%2BNiO8%3D
+        default: https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/sasa_train.zip?se=2022-02-18T08%3A27%3A57Z&sp=rt&sv=2020-10-02&sr=b&sig=D2ErMceKl5T9fuQHBwySAZPWm2iixae46BkFjdLX8Kk%3D
       - name: dataset_test
-        default: https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/mbtr_test.zip?se=2022-02-18T07%3A58%3A36Z&sp=rt&sv=2020-10-02&sr=b&sig=5gSwhvSpgOU46g23%2BNSA20OFPajhfvqLsydEDYWxHLg%3D
+        default: https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/mbtr_test.zip?se=2022-02-18T08%3A28%3A00Z&sp=rt&sv=2020-10-02&sr=b&sig=PGScBaiMpv6nk%2FRujhbH%2BfJXzDqiIjmWfwq3vbGc0QE%3D
       - name: dataset_test_sasa
-        default:  https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/sasas_test.zip?se=2022-02-18T07%3A55%3A55Z&sp=rt&sv=2020-10-02&sr=b&sig=z27exhQmt%2BW6dIon40dvXMCbqlTTduINy88rUUsb24g%3D
+        default: https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/sasas_test.zip?se=2022-02-18T08%3A27%3A45Z&sp=rt&sv=2020-10-02&sr=b&sig=rNOkOJHw3%2BbOax7jGU6o30KhiUgJnJSmkAXf2%2BhY%2FzY%3D
