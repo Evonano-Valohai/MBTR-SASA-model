@@ -14,12 +14,15 @@
       - name: learning_rate
         default: 0.001
         type: float
-    inputs:
       - name: dataset_train
         default: https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/mbtr_train
+        type: string
       - name: dataset_train_sasa
         default: https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/sasa_train
+        type: string
       - name: dataset_test
         default: https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/mbtr_test
+        type: string
       - name: dataset_test_sasa
         default: https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/sasas_test
+        type: string

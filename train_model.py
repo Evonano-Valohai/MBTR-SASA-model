@@ -32,29 +32,25 @@ def main():
         default_parameters={
             'learning_rate': 0.001,
             'epochs': 500,
-        },
-        default_inputs= {
             'dataset_train': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/mbtr_train',
             'dataset_train_sasa': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/sasa_train',
             'dataset_test': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/mbtr_test',
             'dataset_test_sasa': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/sasas_test'
-        }
- 
-
+        },
     )
     
     print("DEBUG")
-    input_path_train_MBTR = valohai.inputs('dataset_train').paths()
+    input_path_train_MBTR = valohai.parameters('dataset_train').value
     print(input_path_train_MBTR)
     for path in input_path_train_MBTR:
         print(path)
     print()
-    input_path_train_SASA = valohai.inputs('dataset_train_SASA').path()
+    input_path_train_SASA = valohai.parameters('dataset_train_SASA').value
     print(input_path_train_SASA)
     print(type(input_path_train_SASA))
     print()
-    input_path_test_MBTR = valohai.inputs('dataset_test').path()
-    input_path_test_SASA = valohai.inputs('dataset_test_SASA').path()
+    input_path_test_MBTR = valohai.parameters('dataset_test').value
+    input_path_test_SASA = valohai.parameters('dataset_test_SASA').value
     
     x_train, y_train =  mbtr_ds_generator(input_path_train_MBTR, input_path_train_SASA)
     x_test, y_test = mbtr_ds_generator(input_path_test_MBTR, input_path_test_SASA)
