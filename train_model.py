@@ -12,21 +12,9 @@ def log_metadata(epoch, logs):
         logger.log('accuracy', logs['accuracy'])
         logger.log('loss', logs['loss'])
         
-def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
-    print('DEBUG 1')
-    for sasa_file in list(directory_SASA):
-        print("DEBUG SASA")
-        print(sasa_file)
-        for mbtr_file in list(directory_MBTR):
-            print("DEBUG MBTR")
-            print(mbtr_file)
-            if re.sub("_sasa", "", sasa_file) == re.sub("mbtr_data_whole_", "", mbtr_file):
-                x = pd.read_csv(mbtr_file, header= None)
-                print(x.shape)
-                x = np.concatenate((x, np.array(x.values.tolist())), axis = 0)
-                y = pd.read_csv(sasa_file, delimiter= ";")
-                print(y.shape)
-                y = np.concatenate((y, np.array(y["TOTAL"])), axis = 0)
+def mbtr_ds_generator(directory_MBTR, directory_SASA):
+    x = np.load(directory_MBTR)
+    y = np.load(directory_SASA)
     return x, y
 
 
@@ -48,10 +36,10 @@ def main():
     )
     
     
-    input_path_train_MBTR = valohai.inputs('dataset_train').streams("*.csv")
-    input_path_train_SASA = valohai.inputs('dataset_train_SASA').streams("*.csv")
-    input_path_test_MBTR = valohai.inputs('dataset_test').streams("*.csv")
-    input_path_test_SASA = valohai.inputs('dataset_test_SASA').streams("*.csv")
+    input_path_train_MBTR = valohai.inputs('dataset_train').paths("*.csv")
+    input_path_train_SASA = valohai.inputs('dataset_train_SASA').paths("*.csv")
+    input_path_test_MBTR = valohai.inputs('dataset_test').paths("*.csv")
+    input_path_test_SASA = valohai.inputs('dataset_test_SASA').paths("*.csv")
     
     x_train, y_train =  mbtr_ds_generator(input_path_train_MBTR, input_path_train_SASA)
     x_test, y_test = mbtr_ds_generator(input_path_test_MBTR, input_path_test_SASA)
