@@ -4,10 +4,7 @@ import tensorflow as tf
 import valohai
 import matplotlib.pyplot as plt
 import pandas as pd
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, LSTM, BatchNormalization
 from sklearn.model_selection import train_test_split
-from tensorflow.keras.callbacks import ModelCheckpoint
 import os
 import re
 
@@ -35,7 +32,6 @@ def main():
         default_parameters={
             'learning_rate': 0.001,
             'epochs': 500,
-            'optimizer': 'adam'
         },
     )
     
@@ -47,16 +43,16 @@ def main():
     x_train, y_train =  mbtr_ds_generator(input_path_train_MBTR, input_path_train_SASA)
     x_test, y_test = mbtr_ds_generator(input_path_test_MBTR, input_path_test_SASA)
 
-    NN_model = Sequential()
+    NN_model = tf.keras.models.Sequential()
     shape = 168
-    NN_model.add(Dense(shape, kernel_initializer='normal',input_dim = shape, activation='relu'))
-    NN_model.add(Dense(256, kernel_initializer='normal',activation='relu'))
-    NN_model.add(Dense(256, kernel_initializer='normal',activation='relu'))
-    NN_model.add(Dense(256, kernel_initializer='normal',activation='relu'))
-    NN_model.add(Dense(1, kernel_initializer='normal'))
+    NN_model.add(tf.keras.layers.Dense(shape, kernel_initializer='normal',input_dim = shape, activation='relu'))
+    NN_model.add(tf.keras.layers.Dense(256, kernel_initializer='normal',activation='relu'))
+    NN_model.add(tf.keras.layers.Dense(256, kernel_initializer='normal',activation='relu'))
+    NN_model.add(tf.keras.layers.Dense(256, kernel_initializer='normal',activation='relu'))
+    NN_model.add(tf.keras.layers.Dense(1, kernel_initializer='normal'))
 
     checkpoint_name = 'best_model.hdf5'
-    checkpoint = ModelCheckpoint(checkpoint_name, monitor='val_loss', verbose = 1, save_best_only = True, mode ='auto')
+    checkpoint = tf.keras.callbacks.ModelCheckpoint(checkpoint_name, monitor='val_loss', verbose = 1, save_best_only = True, mode ='auto')
     early_stopping = tf.keras.callbacks.EarlyStopping(
         monitor="val_loss",
         min_delta=0,
@@ -69,7 +65,7 @@ def main():
     callbacks_list = [checkpoint, early_stopping]
     optimizer = tf.keras.optimizers.Adam(learning_rate=valohai.parameters('learning_rate').value)
     loss_fn = 'mean_absolute_error'
-    model.compile(optimizer=optimizer, loss=loss_fn, metrics=['accuracy', 'mae'])
+    NN_model.compile(optimizer=optimizer, loss=loss_fn, metrics=['accuracy', 'mae'])
     
     # Print metrics out as JSON
     # This enables Valohai to version your metadata
