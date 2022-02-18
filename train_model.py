@@ -1,6 +1,6 @@
 import uuid
 import numpy as np
-# import tensorflow as tf
+import tensorflow as tf
 import valohai
 import pandas as pd
 import re
@@ -13,15 +13,16 @@ def log_metadata(epoch, logs):
         logger.log('loss', logs['loss'])
         
 def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
-    print('DEBUG')
+    print('DEBUG 1')
+    print(directory_MBTR)
     x = 0
     y = 0
     for mbtr_file in directory_MBTR:
+      print(mbtr_file)
       for sasa_file in directory_SASA:
-        print(mbtr_file)
         print(sasa_file)
         if re.sub("_sasa", "", sasa_file) == re.sub("mbtr_data_whole_", "", mbtr_file):
-            print("DEBUG")
+            print("DEBUG 3")
             x = pd.read_csv(mbtr_file, header= None)
             print(x.shape)
             x = np.concatenate((x, np.array(x.values.tolist())), axis = 0)
@@ -46,7 +47,7 @@ def main():
         }
     )
     
-    print("DEBUG")
+    print("DEBUG 2")
     input_path_train_MBTR = valohai.inputs('dataset_train').paths()
     input_path_train_SASA = valohai.inputs('dataset_train_SASA').paths()
     input_path_test_MBTR = valohai.inputs('dataset_test').paths()
