@@ -5,4 +5,3 @@ tensorflow==2.6.0
 sklearn==0.0
 keras==2.8.0
 xgboost==0.90
-biopandas==0.2.9
