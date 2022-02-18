@@ -31,7 +31,7 @@ def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
                 y = np.concatenate((y, np.array(y["TOTAL"])), axis = 0)
     return x, y
 
-def read(sasa):
+def read_sasa(sasa):
     for i in sasa:
         print(i)
         print()
@@ -58,7 +58,7 @@ def main():
     input_path_test_MBTR = valohai.inputs('dataset_test').paths()
     input_path_test_SASA = valohai.inputs('dataset_test_SASA').paths()
     
-    read(input_path_test_SASA)
+    read_sasa(input_path_test_SASA)
     x_train, y_train =  mbtr_ds_generator(input_path_train_MBTR, input_path_train_SASA)
     x_test, y_test = mbtr_ds_generator(input_path_test_MBTR, input_path_test_SASA)
 
