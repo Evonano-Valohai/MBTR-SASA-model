@@ -55,7 +55,6 @@ def main():
     input_path_test_MBTR = valohai.inputs('dataset_test').paths()
     input_path_test_SASA = valohai.inputs('dataset_test_SASA').paths()
     
-    read_sasa(input_path_test_SASA)
     x_train, y_train =  mbtr_ds_generator(input_path_train_MBTR, input_path_train_SASA)
     x_test, y_test = mbtr_ds_generator(input_path_test_MBTR, input_path_test_SASA)
 
