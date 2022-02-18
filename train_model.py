@@ -14,9 +14,9 @@ def log_metadata(epoch, logs):
         
 def mbtr_ds_generator(directory_MBTR, directory_SASA):
     with open(directory_MBTR) as f:
-        x = np.load(f, encoding='utf-8')
+        x = np.load(f, encoding='bytes')
     with open(directory_SASA) as f:
-        y = np.load(f, encoding='utf-8')
+        y = np.load(f, encoding='bytes')
     return x, y
 
 
