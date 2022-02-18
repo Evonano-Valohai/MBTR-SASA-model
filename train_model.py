@@ -16,12 +16,17 @@ def log_metadata(epoch, logs):
         logger.log('loss', logs['loss'])
         
 def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
+    print('DEBUG')
+    print(directory_MBTR)
+    print(directory_SASA)
+    x = 0
+    y = 0
     for mbtr_file in directory_MBTR:
       for sasa_file in directory_SASA:
         if re.sub("_sasa", "", sasa_file) == re.sub("mbtr_data_whole_", "", mbtr_file):
-            x = pd.read_csv(directory_MBTR + "/" + str(mbtr_file), header= None)
+            x = pd.read_csv(mbtr_file, header= None)
             x = np.concatenate((x, np.array(x.values.tolist())), axis = 0)
-            y = pd.read_csv(directory_SASA + "/" + str(sasa_file), delimiter= ";")
+            y = pd.read_csv(sasa_file, delimiter= ";")
             y = np.concatenate((y, np.array(y["TOTAL"])), axis = 0)
     return x, y
 
