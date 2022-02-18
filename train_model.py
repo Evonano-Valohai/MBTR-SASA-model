@@ -16,8 +16,8 @@ def log_metadata(epoch, logs):
         logger.log('loss', logs['loss'])
         
 def mbtr_ds_generator(directory_MBTR, directory_SASA, timestep_size = 300):
-    for mbtr_file in sorted(os.listdir(directory_MBTR)):
-      for sasa_file in sorted(os.listdir(directory_SASA)):
+    for mbtr_file in directory_MBTR:
+      for sasa_file in directory_SASA:
         if re.sub("_sasa", "", sasa_file) == re.sub("mbtr_data_whole_", "", mbtr_file):
             x_mbtr = pd.read_csv(directory_MBTR + "/" + str(mbtr_file), header= None)
             x = np.concatenate((x, np.array(x_mbtr.values.tolist())), axis = 0)
@@ -32,25 +32,20 @@ def main():
         default_parameters={
             'learning_rate': 0.001,
             'epochs': 500,
-            'dataset_train': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/mbtr_train',
-            'dataset_train_sasa': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/sasa_train',
-            'dataset_test': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/mbtr_test',
-            'dataset_test_sasa': 'https://github.com/Evonano-Valohai/MBTR-SASA-model/tree/main/sasas_test'
         },
+        default_inputs={
+            'dataset_train': 'https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/mbtr_train.zip?se=2022-02-18T07%3A58%3A16Z&sp=rt&sv=2020-10-02&sr=b&sig=5xk%2FYuRuktiNSxtL90QpezbuQx1Au5JGiEAQXQMEprQ%3D',
+            'dataset_train_sasa': 'https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/sasa_train.zip?se=2022-02-18T07%3A57%3A54Z&sp=rt&sv=2020-10-02&sr=b&sig=B8%2F0f4m7PzaBbq8nqEK7WW%2Bfa6Xi0Z7vp57vWQ%2BNiO8%3D',
+            'dataset_test': 'https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/mbtr_test.zip?se=2022-02-18T07%3A58%3A36Z&sp=rt&sv=2020-10-02&sr=b&sig=5gSwhvSpgOU46g23%2BNSA20OFPajhfvqLsydEDYWxHLg%3D',
+            'dataset_test_sasa': 'https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/sasas_test.zip?se=2022-02-18T07%3A55%3A55Z&sp=rt&sv=2020-10-02&sr=b&sig=z27exhQmt%2BW6dIon40dvXMCbqlTTduINy88rUUsb24g%3D'
+        }
     )
     
     print("DEBUG")
-    input_path_train_MBTR = valohai.parameters('dataset_train').value
-    print(input_path_train_MBTR)
-    for path in input_path_train_MBTR:
-        print(path)
-    print()
-    input_path_train_SASA = valohai.parameters('dataset_train_SASA').value
-    print(input_path_train_SASA)
-    print(type(input_path_train_SASA))
-    print()
-    input_path_test_MBTR = valohai.parameters('dataset_test').value
-    input_path_test_SASA = valohai.parameters('dataset_test_SASA').value
+    input_path_train_MBTR = valohai.inputs('dataset_train').paths()
+    input_path_train_SASA = valohai.inputs('dataset_train_SASA').paths()
+    input_path_test_MBTR = valohai.inputs('dataset_test').paths()
+    input_path_test_SASA = valohai.inputs('dataset_test_SASA').paths()
     
     x_train, y_train =  mbtr_ds_generator(input_path_train_MBTR, input_path_train_SASA)
     x_test, y_test = mbtr_ds_generator(input_path_test_MBTR, input_path_test_SASA)
