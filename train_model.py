@@ -4,6 +4,7 @@ import tensorflow
 import valohai
 import pandas as pd
 import re
+import os
 
 def log_metadata(epoch, logs):
     """Helper function to log training metrics"""
@@ -13,8 +14,8 @@ def log_metadata(epoch, logs):
         logger.log('loss', logs['loss'])
         
 def mbtr_ds_generator(directory_MBTR, directory_SASA):
-    x = np.load(directory_MBTR)
-    y = np.load(directory_SASA)
+    x = np.load(os.path.basename(directory_MBTR))
+    y = np.load(os.path.basename(directory_SASA))
     return x, y
 
 
