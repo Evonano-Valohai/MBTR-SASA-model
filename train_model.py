@@ -1,3 +1,4 @@
+from email.policy import default
 import uuid
 import numpy as np
 import tensorflow
@@ -14,8 +15,6 @@ def log_metadata(epoch, logs):
         logger.log('loss', logs['loss'])
         
 def mbtr_ds_generator(directory_MBTR, directory_SASA):
-    print(directory_MBTR, type(directory_MBTR))
-    print(directory_SASA, type(directory_SASA))
     x = np.load(directory_MBTR)
     y = np.load(directory_SASA)
     return x, y
@@ -29,15 +28,20 @@ def main():
         default_parameters={
             'learning_rate': 0.001,
             'epochs': 500,
+        },
+        default_inputs = {
+            'dataset_train':'https://raw.githubusercontent.com/Evonano-Valohai/MBTR-SASA-model/main/mbtr_train.npy'
+            'dataset_train_sasa':'https://raw.githubusercontent.com/Evonano-Valohai/MBTR-SASA-model/main/sasa_train.npy'
+            'dataset_test': 'https://raw.githubusercontent.com/Evonano-Valohai/MBTR-SASA-model/main/mbtr_test.npy'
+            'dataset_test_sasa':'https://raw.githubusercontent.com/Evonano-Valohai/MBTR-SASA-model/main/sasa_test.npy'
         }
     )
      
-    input_path_train_MBTR = '/valohai/inputs/mbtr_train.npy'
-    input_path_train_SASA = '/valohai/inputs/sasa_train.npy'
-    input_path_test_MBTR = '/valohai/inputs/mbtr_test.npy'
-    input_path_test_SASA = '/valohai/inputs/sasa_test.npy'
-    print(input_path_train_MBTR)
-    print(type(input_path_train_MBTR))
+    input_path_train_MBTR = valohai.inputs('dataset_train').path()
+    input_path_train_SASA = valohai.inputs('dataset_train_sasa').path()
+    input_path_test_MBTR = valohai.inputs('dataset_test').path()
+    input_path_test_SASA = valohai.inputs('dataset_test_sasa').path()
+
     x_train, y_train =  mbtr_ds_generator(input_path_train_MBTR, input_path_train_SASA)
     x_test, y_test = mbtr_ds_generator(input_path_test_MBTR, input_path_test_SASA)
 
