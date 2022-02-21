@@ -67,7 +67,7 @@ def main():
     callbacks_list = [checkpoint, early_stopping]
     optimizer = tensorflow.keras.optimizers.Adam(learning_rate=valohai.parameters('learning_rate').value)
     loss_fn = 'mean_absolute_error'
-    NN_model.compile(optimizer=optimizer, loss=loss_fn, metrics=['mse'])
+    NN_model.compile(optimizer=optimizer, loss=loss_fn, metrics=['accuracy', 'mse'])
     
     # Print metrics out as JSON
     # This enables Valohai to version your metadata
