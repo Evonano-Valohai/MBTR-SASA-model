@@ -27,7 +27,7 @@ def main():
         default_parameters={
             'learning_rate': 0.001,
             'epochs': 500,
-        },
+        }
         '''
         default_inputs={
             'dataset_train': 'https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/mbtr_train.zip?se=2022-02-18T07%3A58%3A16Z&sp=rt&sv=2020-10-02&sr=b&sig=5xk%2FYuRuktiNSxtL90QpezbuQx1Au5JGiEAQXQMEprQ%3D',
