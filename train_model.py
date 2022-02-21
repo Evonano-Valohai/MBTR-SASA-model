@@ -67,7 +67,7 @@ def main():
     callbacks_list = [checkpoint, early_stopping]
     optimizer = tensorflow.keras.optimizers.Adam(learning_rate=valohai.parameters('learning_rate').value)
     loss_fn = 'mean_absolute_error'
-    NN_model.compile(optimizer=optimizer, loss=loss_fn, metrics=['accuracy', 'mae'])
+    NN_model.compile(optimizer=optimizer, loss=loss_fn, metrics=['mse'])
     
     # Print metrics out as JSON
     # This enables Valohai to version your metadata
@@ -77,15 +77,14 @@ def main():
     NN_model.fit(x_train, y_train, epochs=valohai.parameters('epochs').value, validation_split = 0.2, callbacks=[callbacks_list, callback])
     wights_file = checkpoint_name 
     NN_model.load_weights(wights_file)
-    NN_model.compile(loss='mean_absolute_error', optimizer='adam', metrics=['mean_absolute_error'])
+    NN_model.compile(optimizer=optimizer, loss=loss_fn, metrics=['mse'])
     
     
 
-    test_loss, test_accuracy, test_mae = NN_model.evaluate(x_test, y_test)
+    test_loss, test_mse = NN_model.evaluate(x_test, y_test)
     with valohai.logger() as logger:
-        logger.log('test_accuracy', test_accuracy)
-        logger.log('test_accuracy', test_mae)
         logger.log('test_loss', test_loss)
+        logger.log('test_mse', test_mse)
 
     # Write output files to Valohai outputs directory
     # This enables Valohai to version your data
