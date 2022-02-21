@@ -74,7 +74,7 @@ def main():
     # and for you to use it to compare experiments
 
     callback = tensorflow.keras.callbacks.LambdaCallback(on_epoch_end=log_metadata)
-    NN_model.fit(x_train, y_train, epochs=valohai.parameters('epochs').value, callbacks=[callbacks_list, callback])
+    NN_model.fit(x_train, y_train, epochs=valohai.parameters('epochs').value, validation_split = 0.2, callbacks=[callbacks_list, callback])
     wights_file = checkpoint_name 
     NN_model.load_weights(wights_file)
     NN_model.compile(loss='mean_absolute_error', optimizer='adam', metrics=['mean_absolute_error'])
