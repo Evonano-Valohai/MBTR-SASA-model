@@ -28,14 +28,6 @@ def main():
             'learning_rate': 0.001,
             'epochs': 500,
         }
-        '''
-        default_inputs={
-            'dataset_train': 'https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/mbtr_train.zip?se=2022-02-18T07%3A58%3A16Z&sp=rt&sv=2020-10-02&sr=b&sig=5xk%2FYuRuktiNSxtL90QpezbuQx1Au5JGiEAQXQMEprQ%3D',
-            'dataset_train_sasa': 'https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/sasa_train.zip?se=2022-02-18T07%3A57%3A54Z&sp=rt&sv=2020-10-02&sr=b&sig=B8%2F0f4m7PzaBbq8nqEK7WW%2Bfa6Xi0Z7vp57vWQ%2BNiO8%3D',
-            'dataset_test': 'https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/mbtr_test.zip?se=2022-02-18T07%3A58%3A36Z&sp=rt&sv=2020-10-02&sr=b&sig=5gSwhvSpgOU46g23%2BNSA20OFPajhfvqLsydEDYWxHLg%3D',
-            'dataset_test_sasa': 'https://valohaidataprod.blob.core.windows.net/valohaidataprod/data/01FW3/01FW3TEFNGBB0W2SYPRHDHF655/upload/sasas_test.zip?se=2022-02-18T07%3A55%3A55Z&sp=rt&sv=2020-10-02&sr=b&sig=z27exhQmt%2BW6dIon40dvXMCbqlTTduINy88rUUsb24g%3D'
-        }
-        '''
     )
      
     input_path_train_MBTR = valohai.inputs('dataset_train').path()
