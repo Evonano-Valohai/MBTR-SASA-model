@@ -30,9 +30,9 @@ def main():
             'epochs': 500,
         },
         default_inputs = {
-            'dataset_train':'https://raw.githubusercontent.com/Evonano-Valohai/MBTR-SASA-model/main/mbtr_train.npy'
-            'dataset_train_sasa':'https://raw.githubusercontent.com/Evonano-Valohai/MBTR-SASA-model/main/sasa_train.npy'
-            'dataset_test': 'https://raw.githubusercontent.com/Evonano-Valohai/MBTR-SASA-model/main/mbtr_test.npy'
+            'dataset_train':'https://raw.githubusercontent.com/Evonano-Valohai/MBTR-SASA-model/main/mbtr_train.npy',
+            'dataset_train_sasa':'https://raw.githubusercontent.com/Evonano-Valohai/MBTR-SASA-model/main/sasa_train.npy',
+            'dataset_test': 'https://raw.githubusercontent.com/Evonano-Valohai/MBTR-SASA-model/main/mbtr_test.npy',
             'dataset_test_sasa':'https://raw.githubusercontent.com/Evonano-Valohai/MBTR-SASA-model/main/sasa_test.npy'
         }
     )
